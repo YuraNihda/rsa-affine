@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Проста Веб Сторінка</title>
+  <link rel="stylesheet" href="../static/style.css"> 
+</head>
+<body>
+  <div class="wrapper">
+    <!-- RSA -->
+    <div class="container">
+      <h1>RSA</h1>
+      <form method="POST" enctype="multipart/form-data">
+        <textarea name="text" placeholder="Введіть ваш текст тут..."></textarea>
+        <label class="custom-file-upload">
+          <input type="file" name="file" />
+          Завантажити файл
+        </label>
+        <div class="butons"> 
+          <button type="submit" name="action" value="encrypt">Зашифрувати</button>
+          <button type="submit" name="action" value="decrypt">Розшифрувати</button>
+        </div>
+      </form>
+
+      <div class="conteiner_result">
+        <h2>Результат</h2>
+        {% if encrypted %}
+          <p><strong>🔐 Зашифровано:</strong> {{ encrypted }}</p>
+        {% endif %}
+        {% if decrypted %}
+          <p><strong>🔓 Розшифровано:</strong> {{ decrypted }}</p>
+        {% endif %}
+        {% if file %}
+        <p><strong>📁 Завантажити файл:</strong></p>
+            {% if encrypt_file %}
+                <a href="{{ url_for('download_file', filename='encrypted_output.txt') }}" class="btn">⬇️ Завантажити зашифрований файл</a>
+            {% elif decrypt_file %}
+                <a href="{{ url_for('download_file', filename='decrypted_output.txt') }}" class="btn">⬇️ Завантажити розшифрований файл</a>
+            {% endif %}
+        {% endif %}
+        {% if not encrypted and not decrypted and not file %}
+          <p>Будь ласка, введіть текст або завантажте файл.</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Affine -->
+    <div class="container">
+      <h1>AFINE</h1>
+      <form method="POST" enctype="multipart/form-data">
+        <textarea name="text2" placeholder="Введіть ваш текст тут..."></textarea>
+        <label class="custom-file-upload">
+          <input type="file" name="file2" />
+          Завантажити файл
+        </label>
+        <div class="butons"> 
+          <button type="submit" name="action" value="encrypt2">Зашифрувати</button>
+          <button type="submit" name="action" value="decrypt2">Розшифрувати</button>
+        </div>
+      </form>
+
+      <div class="conteiner_result">
+        <h2>Результат</h2>
+        {% if encrypted2 %}
+          <p><strong>🔐 Зашифровано:</strong> {{ encrypted2 }}</p>
+        {% endif %}
+        {% if decrypted2 %}
+          <p><strong>🔓 Розшифровано:</strong> {{ decrypted2 }}</p>
+        {% endif %}
+        {% if file2 %}
+        <p><strong>📁 Завантажити файл:</strong></p>
+            {% if encrypt_file %}
+                <a href="{{ url_for('download_file', filename='affine_encrypted.txt') }}" class="btn">⬇️ Завантажити зашифрований файл</a>
+            {% elif decrypt_file %}
+                <a href="{{ url_for('download_file', filename='affine_decrypted.txt') }}" class="btn">⬇️ Завантажити розшифрований файл</a>
+            {% endif %}
+        {% endif %}
+        {% if not encrypted2 and not decrypted2 and not file2 %}
+          <p>Будь ласка, введіть текст або завантажте файл.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</body>
+</html>

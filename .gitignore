@@ -1,0 +1,11 @@
+.aws
+terraform\terraform-generated-key.pem
+*.pem
+dev/venv/Include/project/__pycache__/affine.cpython-311.pyc
+terraform\
+terraform
+dev\venv\Lib
+dev\venv\Scripts
+dev\venv\pyvenv.cfg
+terraform
+terraform/.terraform/
